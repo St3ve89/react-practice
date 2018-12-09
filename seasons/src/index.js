@@ -6,16 +6,20 @@ class App extends React.Component {
     super(props)
 
     this.state = { lat: null }
+
+    window.navigator.geolocation.getCurrentPosition(
+      position => {
+        // we call setState to update state
+        this.setState({ lat: position.coords.latitude })
+      },
+      err => console.log(err)
+    )
   }
 
 
   render() {
     const { lat } = this.state
-    
-    window.navigator.geolocation.getCurrentPosition(
-      position => console.log(position),
-      err => console.log(err)
-    )
+
     return <div>Latitude: {lat}</div>
   }
 }

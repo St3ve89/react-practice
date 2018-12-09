@@ -22,13 +22,15 @@ class App extends React.Component {
   render() {
     const { lat, errorMessage } = this.state
 
-    return (
-      <div>
-        Latitude: {lat}
-        <br />
-        Error: {errorMessage}
-        </div>
-    )
+    if(errorMessage && !lat) {
+      return <div>Error: {errorMessage}</div>
+    }
+
+    if(!errorMessage && lat) {
+      return <div>Latitude: {lat}</div>
+    }
+
+    return <div>Loading!</div>
   }
 }
 

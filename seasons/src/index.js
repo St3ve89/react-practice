@@ -6,20 +6,13 @@ class App extends React.Component {
     super(props)
 
     this.state = { lat: null, errorMessage: '' }
-
-    window.navigator.geolocation.getCurrentPosition(
-      position => {
-        // we call setState to update state
-        this.setState({ lat: position.coords.latitude })
-      },
-      err => {
-        this.setState({ errorMessage: err.message })
-      }
-    )
   }
 
   componentDidMount() {
-    console.log('My component was rendered to the screen');
+    window.navigator.geolocation.getCurrentPosition(
+      position => this.setState({ lat: position.coords.latitude }),
+      err => this.setState({ errorMessage: err.message })
+    )
   }
   
   componentDidUpdate() {

@@ -9,6 +9,10 @@ class SearchBar extends React.Component {
     console.log(this.state.term);
   }
 
+  onChange(event) {
+    this.setState({ term: event.target.value})
+  }
+
   render() {
     const { term } = this.state;
     return (
@@ -16,7 +20,7 @@ class SearchBar extends React.Component {
         <form onSubmit={this.onFormSubmit} className="ui form">
          <div className="field">
          <label>Image Search</label>
-          <input type="text" value={term} onChange={e => this.setState({ term: e.target.value})}/>
+          <input type="text" value={term} onChange={this.onChange}/>
          </div>
         </form>
       </div>

@@ -3,6 +3,7 @@ import { choice } from './helpers';
 
 
 class CoinContainer extends Component {
+
   static defaultProps = {
     coins: [
       {side: 'heads', imgSrc: "https://tinyurl.com/react-coin-heads-jpg"},
@@ -10,20 +11,26 @@ class CoinContainer extends Component {
     ]
   }
   constructor(props) {
-    super(props)
+    super(props);
 
-    this.state={
+    this.state = {
       currCoin: null,
       nFlips: 0,
       nHeads: 0,
       nTails: 0
-    }
+    };
 
-    this.handleClick = this.handleClick.bind(this)
+    this.handleClick = this.handleClick.bind(this);
   }
 
   flipCoin() {
-
+    const newCoin = choice(this.props.coins);
+    this.setState(st => {
+      return {
+        currCoin: newCoin,
+        nFlips: st.nFlips + 1
+      };
+    });
   }
 
   handleClick(e) {

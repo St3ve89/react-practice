@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { choice } from './helpers';
+import Coin from './Coin';
 
 
 class CoinContainer extends Component {
@@ -28,7 +29,9 @@ class CoinContainer extends Component {
     this.setState(st => {
       return {
         currCoin: newCoin,
-        nFlips: st.nFlips + 1
+        nFlips: st.nFlips + 1,
+        nHeads: st.nHeads + (newCoin.side === 'heads' ? 1 : 0),
+        nTails: st.nTails + (newCoin.side === 'tails' ? 1 : 0)
       };
     });
   }
@@ -38,10 +41,11 @@ class CoinContainer extends Component {
   }
 
   render(){
-    const { nFlips, nTails, nHeads } = this.state;
+    const { currCoin, nFlips, nTails, nHeads } = this.state;
     return(
       <div className="coin-container">
         <h2>Let's Flip the coin!</h2>
+        {currCoin && <Coin info={this.state.currCoin} />}
         <button onClick={this.handleClick}>Flip me!</button>
         <p>Out of {nFlips} flips, there have been {nHeads} heads and {nTails} tails.</p>
       </div>

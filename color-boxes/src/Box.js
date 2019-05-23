@@ -4,9 +4,6 @@ import { choice } from './helper';
 
 
 class Box extends Component {
-  static defaultProps = {
-    allColors: ['purple', 'magenta', 'violet', 'pink']
-  }
   constructor(props) {
     super(props);
 
@@ -21,7 +18,7 @@ class Box extends Component {
     do {
       newColor = choice(this.props.allColors)
     } while (newColor === this.state.color)
-    
+
     this.setState({color: newColor})
   }
 
@@ -31,9 +28,7 @@ class Box extends Component {
 
   render() {
     return (
-      <div className="box" style={{ backgroundColor: this.state.color }} onClick={this.handleClick}>
-
-      </div>
+      <div className="box" style={{ backgroundColor: this.state.color }} onClick={this.handleClick}></div>
     )
   }
 }

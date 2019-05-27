@@ -58,10 +58,12 @@ class Hangman extends Component {
 
   /** render: render game */
   render() {
+    const {nWrong} = this.state;
     return (
       <div className='Hangman'>
         <h1>Hangman</h1>
-        <img src={this.props.images[this.state.nWrong]} />
+        <img src={this.props.images[nWrong]} />
+        <p>Guessed wrong: {nWrong}</p>
         <p className='Hangman-word'>{this.guessedWord()}</p>
         <p className='Hangman-btns'>{this.generateButtons()}</p>
       </div>
